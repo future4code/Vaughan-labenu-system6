@@ -65,3 +65,111 @@ export const createStudent = async(req: Request, res: Response) => {
        
     }
 }
+
+export const searchClassActive = async(req: Request, res: Response) => {
+
+    try { 
+
+      let result = await connection('TURMA')
+       .select("*")
+       .where('modulo', '!=', '0');
+
+       res.status(200).send(result);
+
+    }catch(err){
+
+       res.status(500).send(err.sqlMessage || err.message);
+       
+    }
+}
+
+export const changeModule = async(req: Request, res: Response) => {
+
+   const { id, newModule } = req.body;
+
+   try { 
+
+     await connection('TURMA')
+     .where({ id: id })
+     .update({ modulo: newModule });
+
+      res.status(200).send('Modulo alterado com sucesso !');
+
+   }catch(err){
+
+      res.status(500).send(err.sqlMessage || err.message);
+      
+   }
+}
+
+export const searchStudent = async(req: Request, res: Response) => {
+
+   const name = req.query.name;
+
+   try { 
+
+     let result = await connection('ESTUDANTE')
+     .select("*")
+     .whereILike('nome', `%${name}%`);
+
+      res.status(200).send(result);
+
+   }catch(err){
+
+      res.status(500).send(err.sqlMessage || err.message);
+      
+   }
+}
+
+export const changeStudentOfClass = async(req: Request, res: Response) => {
+
+   const { id, newClass } = req.body;
+
+   try { 
+
+     await connection('ESTUDANTE')
+     .where({ id: id})
+     .update({turma_id: newClass})
+
+      res.status(200).send('Turma alterada com sucesso !');
+
+   }catch(err){
+
+      res.status(500).send(err.sqlMessage || err.message);
+      
+   }
+}
+
+export const searchAllTeacher = async(req: Request, res: Response) => {
+
+   try { 
+
+     let result = await connection('DOCENTE');
+
+      res.status(200).send(result);
+
+   }catch(err){
+
+      res.status(500).send(err.sqlMessage || err.message);
+      
+   }
+}
+
+export const changeTeacherOfClass = async(req: Request, res: Response) => {
+
+   const { id, newClass } = req.body;
+
+   try { 
+
+     await connection('DOCENTE')
+     .where({ id: id})
+     .update({turma_id: newClass})
+
+      res.status(200).send('Turma alterada com sucesso !');
+
+   }catch(err){
+
+      res.status(500).send(err.sqlMessage || err.message);
+      
+   }
+}
