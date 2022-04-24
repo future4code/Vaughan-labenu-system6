@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import {AddressInfo} from 'net'
-import { changeModule, changeStudentOfClass, changeTeacherOfClass, createClass, createStudent, createTeacher, searchAllTeacher, searchClassActive, searchStudent } from '../Functions/Functions';
+import { changeModule, changeStudentOfClass, changeTeacherOfClass, createClass, createStudent, createTeacher, getYearOfId, searchAllTeacher, searchClassActive, searchStudent } from '../Functions/Functions';
 
 
 const app = express();
@@ -34,6 +34,9 @@ app.get('/searchAllTeacher', searchAllTeacher);
 
 //mudar docente de turma
 app.put('/changeTeacherOfClass', changeTeacherOfClass);
+
+//retornar a idade do estudante pelo id
+app.get('/getYearOfId/:id', getYearOfId);
 
 
 const server = app.listen(process.env.PORT || 3003, () => {
