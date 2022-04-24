@@ -10,6 +10,27 @@ export enum Especialidades {
    POO = 'Programação Orientada a Objetos',
 }
 
+export const arrEspec = [{
+    name: "JS",
+    desc: "Javascript"
+},
+{
+    name: "CSS",
+    desc: "CSS"
+},
+{
+    name: "REACT",
+    desc: "REACT"
+},
+{
+    name: "TYPESCRIPT",
+    desc: "TYPESCRIPT"
+},
+{
+    name: "POO",
+    desc: "Programação Orientada a Objetos"
+}]
+
 
 export class Docente extends Usuario{
     id: string;
@@ -17,7 +38,7 @@ export class Docente extends Usuario{
     email: string;
     data_nasc: string;
     turma_id: string;
-    especialidades: []
+    especialidades: string
 
     constructor(nome: string, email: string, data_nasc: string, turma_id: string){
         super();
@@ -26,5 +47,13 @@ export class Docente extends Usuario{
         this.email = email;
         this.data_nasc = data_nasc;
         this.turma_id = turma_id;
+    }
+
+    public setSpecialty(spec: string){
+        this.especialidades = spec;
+    }
+
+    public getID(){
+        return this.id;
     }
 }

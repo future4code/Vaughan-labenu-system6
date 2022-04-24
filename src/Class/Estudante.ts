@@ -18,4 +18,8 @@ export class Estudante extends Usuario{
         this.data_nasc = data_nasc;
         this.turma_id = turma_id;
     }
+
+    public getID(){
+        return this.id
+    }
 }
