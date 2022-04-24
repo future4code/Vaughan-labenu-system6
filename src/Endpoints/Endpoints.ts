@@ -3,7 +3,6 @@ import cors from 'cors'
 import {AddressInfo} from 'net'
 import { changeModule, changeStudentOfClass, changeTeacherOfClass, createClass, createStudent, createTeacher, getYearOfId, searchAllTeacher, searchClassActive, searchStudent } from '../Functions/Functions';
 
-
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -37,7 +36,6 @@ app.put('/changeTeacherOfClass', changeTeacherOfClass);
 
 //retornar a idade do estudante pelo id
 app.get('/getYearOfId/:id', getYearOfId);
-
 
 const server = app.listen(process.env.PORT || 3003, () => {
     if (server) {
